@@ -1,3 +1,13 @@
 * aslk_sapa: The personal static blog generator
+
 ** Description:
 This is the static blog generator that is written in Python.
+
+** Structure
+aslk_sapa
+---> field_1
+    ---> posts/
+---> field_2
+    ---> posts/
+---> field_3
+    ---> posts/
