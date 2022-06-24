@@ -1,0 +1,55 @@
+#!/usr/bin/env python
+""" Static site generator """
+import os
+import yaml
+from yaml.loader import SafeLoader
+from bs4 import BeautifulSoup
+
+ABOUT = "alsk static site generator running ..."
+POST_DIR = "./posts"
+BASE_HTML = '''
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>TITLE_HERE</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+</body>
+</html>
+'''
+
+# Variables
+TITLE = ''
+
+print(ABOUT)
+# list all directory names in _posts
+for entry in os.listdir(POST_DIR):
+    target = os.path.join(POST_DIR, entry)
+    if os.path.isdir(target):
+        print(os.path.basename(target))
+
+# Create index.html
+with open('index.html', 'w', encoding='utf-8') as index:
+    index.write(BASE_HTML)
+index.close()
+
+# Read configs.yaml
+with open('configs.yaml', encoding='utf-8') as f:
+    data = yaml.load(f, Loader=SafeLoader)
+    TITLE = data['title']
+
+# Edit index.html
+with open('index.html', encoding='utf-8') as fp:
+    soup = BeautifulSoup(fp, 'html.parser')
+    soup.find(text="TITLE_HERE").replace_with(TITLE)
+    print(soup.prettify())
+    with open('index.html', 'w', encoding='utf-8') as index_html:
+        index_html.write(str(soup))
+
+
+# References:
+#     https://www3.ntu.edu.sg/home/ehchua/programming/index.html
+#     https://beautiful-soup-4.readthedocs.io/en/latest/

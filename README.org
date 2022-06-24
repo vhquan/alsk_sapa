@@ -5,9 +5,5 @@ This is the static blog generator that is written in Python.
 
 ** Structure
 aslk_sapa
----> field_1
-    ---> posts/
----> field_2
-    ---> posts/
----> field_3
-    ---> posts/
+
+field_1 | field_2 | field_3 | ...
