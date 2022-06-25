@@ -9,7 +9,7 @@ ABOUT = "alsk static site generator running ..."
 POST_DIR = "./posts"
 BASE_HTML = '''
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>TITLE_HERE</title>
